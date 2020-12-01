@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Cafe24Dangdanghae";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cafe24Simplehae";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Simplehae.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;400&display=swap");
+
+/*
+영문
+얇은거
+font-family: "Chakra Petch", sans-serif;
+굵은거
+font-family: "Black Ops One", cursive;
+/*
+font-family: 'Archivo Black', sans-serif;
+font-family: 'Black Ops One', cursive;
+font-family: 'Chakra Petch', sans-serif;
+font-family: 'Poppins', sans-serif;
+*/
