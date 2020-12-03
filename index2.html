@@ -393,7 +393,7 @@
                 <li class="active"><a href="#tb_one">웹표준</a></li>
                 <li class=""><a href="#tb_two">스킵메뉴</a></li>
                 <li class=""><a href="#tb_three">float</a></li>
-                <li class=""><a href="#tb_four">한줄효과</a></li>
+                <li class=""><a href="#tb_four">css순서</a></li>
               </ul>
             </div>
               <div class="tab-cont">
@@ -401,21 +401,27 @@
                 <pre class="line-numbers"><code class="language-js">웹표준이란?
   - 웹 표준은 월드 와이드 웹의 측면을 서술하고 정의하는 공식 표준이나 다른 기술 규격을 가리키는 일반적인 용어이다.
   최근에 이 용어는 웹 사이트를 작성하는 데 중요도가 높아지고 있으며 웹 디자인, 개발과 관계가 있다.
-
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+  - [웹표준 코딩 검사 사이트]
+  아래 사이트는 웹페이지의 웹표준 준수 여부를 검사해 준다.
+  통과할 경우 웹표준을 준수했다는 마크를 받을 수 있다.웹표준 인증마크
+  -[W3C Mark Up 검증 서비스]
+  http://validator.kldp.org/
+  -[W3C CSS Validation 서비스]
+  http://jigsaw.w3.org/css-validator/
+  
+  /*a 태그 사용시 title 태그*/
+  &lt;div id="evnt_page_link"&gt;
+    &lt;a href="#" title="당첨페이지 바로가기"&lt;/a&gt;
+    &lt;a href="#" title="저번주 당첨페이지"&lt;/a&gt;
+    &lt;a href="#" title="힌트 찾아보기"&lt;/a&gt;
   &lt;/div&gt;
 
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
+  /*img 태그 사용시 alt 태그*/
+  &lt;div id="evnt_page_image"&gt;
+    &lt;img src="#" alt="첫번째 배너이미지 당첨자발표"&gt;
+    &lt;img src="#" alt="두번째 배너이미지 저번주당첨자발표"&gt;
+    &lt;img src="#" alt="세번째 배너이미지 이번주 단어 힌트"&gt;
+  &lt;/div&gt;
             </code></pre> 
                 </div>
                 <!-- //tb_one -->
@@ -423,24 +429,29 @@
                   <pre class="line-numbers"><code class="language-js">스킵메뉴란?
   - 키보드의 tab키를 눌렀을 때 해당 영역으로 즉시 갈수 있는 메뉴의
   바로가기를 나타낸다.
-  - 웹표준과 웹접근성을 지키기 위해서 반드시 만들어야한다.
-  - 어떠한 사용자든지 어떠한 기술환경에서도 웹사이트에서 제공하는
-  모든 정보에 접근할 수 있도록 보장해야한다.
+  - a:active,a:focus{top:0;}으로 tab 키를 눌러 focus가 skip 으로 향했을때
+  - top:0 을 주어 보이게 합니다.
+  - 평소에는 보이지 않아야 하므로 a{top:-35px}을 적용합니다.
 
-  /*html*/
+  /* html 스킵 내비게이션 */
   &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+    &lt;a rel="bookmark" herf="#menu" 전체 메뉴 바로가기&lt;/a&gt;
+    &lt;a rel="boomark" herf="#banner" 배너 영역 바로가기&lt;/a&gt;
+    &lt;a rel="boomark" herf="contents" 컨텐츠 영역 바로가기&lt;/a&gt;
   &lt;/div&gt;
 
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
+  &lt;div id="wrap"&gt;
+  &lt;div id="header"&lt;/div&gt;
+  &lt;div id="contents"&lt;/div&gt;
+  &lt;div id="footer"&lt;/div&gt;
+  &lt;/div&gt;
+
+  /* style 스킵 내비게이션 */
+  #skip {position:relative;}
+  #skip a {position:absolute; left:0px; top:-35px; width:140px; border:1px solid #fff
+            color:#555; text-align:center; background:#333; line-height:30px;}
   #skip a:active,
-  #skip a:focus {top: 0;}</code></pre>
+  #skip a:focue {top:0;}</code></pre>
                       </div>
                       <div>
                         <pre class="line-numbers"><code class="language-html ">
@@ -453,22 +464,42 @@
   - float은 객체를 좌측으로 정렬하는 기능으로, 레이아웃 아웃라이너 잡을때 많이 쓰이입니다.
   - float기능을 쓴다면, 반드시 부모는 float 해제를 시켜야 합니다
   - float해제 이유는, float 기능을 쓰면 height 값이 없어지기에 레이아웃이 깨지기 때문입니다.
+  - 해지 방법중 간단한것은, 부모태그에 overflow:hidden 을 주는것이나
+  - float을 해제하는 방법은 많으나 제일 권장되는 방식은
+  - float된 요소의 부모태그에 가상요소를 만들고 해당요소에 clar:both를 지정해줍니다.
+  * claer 속성
+  - clear:none // 기본값으로 clear를 설정하지 않은 것과 같습니다.
+  - clear:left // 왼쪽으로 붙는 float 정렬을 취소합니다.
+  - clear:right // 오른쪽으로 붙는 float 정렬을 취소합니다.
+  - clear:both // 오른쪽,왼쪽 모두 붙는 float 정렬을 취소합니다.
 
-  /*float이 쓰인 경우*/
-  &lt;.nav {
+  /*float해제 : 부모태그에 overflow:hidden 이 쓰인 경우*/
+  &lt;.parent {
     overflow: hidden;
     padding: 30px 0;
   }&gt;
-  &lt;.nav > div {
+  &lt;.parent > div {
     float: left;
     width: 40%;
   }&gt;
+
+  /*float해제 : 부모태그에 가상요소 ::after 이 쓰인 경우*/
+  &lt;.parent {
+    content:'';
+    display: block;
+    clear:both;
+  }&gt;
+  &lt;.parent > div {
+    float: left;
+    width: 40%;
+  }&gt;
+
 </code></pre>
                   </div>              
                 </div>
                 <!-- //tb_three -->
                 <div id="tb_four" class="tab_pane">
-                  <pre class="line-numbers"><code class="language-js">한줄효과란?
+                  <pre class="line-numbers"><code class="language-js">css 순서
   -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
   -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
   -이 규칙을 CSS 우선 순위라고 합니다.
@@ -480,20 +511,8 @@
   -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
 
   /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
-  &lt;/div&gt;
-
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-            </code></pre>               
+  &lt;div class="myClass2 myClass1"&gt;class속성에 정의된 순서가 아니라, css에 나타나는
+  위체에 의해 결정됩니다.&lt;/div&gt;</code></pre>               
                 </div>
                 <!-- //tb_four -->
               </div>
@@ -549,124 +568,90 @@
                 <li class="active"><a href="#tb_one">미디어쿼리</a></li>
                 <li class=""><a href="#tb_two">Sprite</a></li>
                 <li class=""><a href="#tb_three">Retina</a></li>
-                <li class=""><a href="#tb_four">플러그인</a></li>
+                <li class=""><a href="#tb_four">한줄효과</a></li>
               </ul>
             </div>
             <div class="tab-cont">
               <div id="tb_one" class="tab_pane active">
                 <pre class="line-numbers"><code class="language-js">미디어쿼리란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
-
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
-
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
-  &lt;/div&gt;
+  미디어 쿼리(mediaqueri)는 사이트에 접속하는 장치에 따라
+  특정한 CSS 스타일을 사용하도록 도와주는 소프트웨어 모듈입니다.
+  미디어 쿼리를 이용한 사이트는 웹 사이트에 접속하는 기기에 따라서
+  레이아웃이 바뀌게 됩니다. 즉, PC로 접속하면 모니터 화면에 맞게
+  스마트폰으로 접속하면 스마트폰 화면에 맞게 레이아웃이 변경되는 것이지요.
+  웹 문서의 스타일을 정의할 때, 즉 CSS 코드를 작성할 때
+  미디어쿼리 모듈을 사용해 주는 것이 일반적인 사용 방법입니다.
 
   /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre> 
+  @media screen and (min-width: 200px) and (max-width: 360px) { /* 스타일 정의 */}</code></pre> 
               </div>
               <!-- //tb_one -->
               <div id="tb_two" class="tab_pane">
                 <pre class="line-numbers"><code class="language-js">Sprite란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
-
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
+  -대부분의 웹 서비스에서는 레이아웃 구성에 필요한 다수의 이미지(버튼이미지,아이콘 등)를
+  -하나의 이미지에 포함 시키고, 좌표와 크기 지정을 통해 추출하여 사용하는 방식을 선택하고 있습니다.
+  -이런 목적으로 만들어진 이미지 리소스를 스프라이트(Sprite)라고 합니다.
+  -낱장의 이미지보다 1장의 이미지 파일을 웹문서를 전송하는 것이기에
+  -즉, HTTP 요청(Request) 횟수를 줄일 수가 있습니다.
+  -위치는 X와 Y의 픽셀좌표를, W는 폭(With)을, H는 (Height)를 의미 합니다.
 
   /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+  &lt;div id="container"&gt;
+    &lt;div class="#sprite"&gt;&lt;/div&gt;
   &lt;/div&gt;
 
   /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
+  #container{
+    position:relative;
+  }
+  .sprite{
+    position:absolute;
+    display:block;
+    width:52px;
+    height:52px;
+    background:url("spr_image_01.png");
+    background-position:-136px -66px;
+    margin:0 auto;
+  }
           </code></pre>               
               </div>
               <!-- //tb_two -->
               <div id="tb_three" class="tab_pane">
                 <pre class="line-numbers"><code class="language-js">Retina란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
+  - 디바이스는 물리적인 기계로 스마트폰, 데스크탑, 랩탑 등과 같은 것들이 디바이스에 해당됩니다.
+  - 디바이스마다 픽셀 밀도가 달라지게 되었는데 이 시작이 2010년의 애플사가 발표한
+  - 디스플레이에서 비롯됩니다. 애플(Apple)사가 2010년 inch 당 픽셀을 x2 배로 올려서
+  - 엄청나게 선명한 레티나 디스플레이를 소개한 이후,
+  - 그래픽 디자인과 설계 과정에서 디바이스의 픽셀을 고려해야 하는 상황에 직면하게 됩니다.
+  - 이렇게 레티나 디스플레이 발표 이후에 x3(3배), x4(4배)로 계속해서 늘어나게 되었으며,
+  - 이에 따라서 비주얼(CSS 포함) 디자인 과정도 복잡해지게 되었습니다.
+  - 디바이스 픽셀 밀도에 영향을 받는 것 중에는 jpg, png, gif 비트맵 데이터의 경우에 주의하여 그래픽 제작이 필요하고,
+  - 벡터 그래픽의 SVG 나 CSS 같은 것은 디바이스 픽셀 밀도에 영향을 받지 않는다 는 점을 기억해야 합니다.
 
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
-
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
-  &lt;/div&gt;
-
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre>               
+  -SVG 나 CSS 와 같은 벡터 그래픽은 디바이스 픽셀 밀도에 영향을 받지 않기 때문에 CSS 제작자는 비율 1만 고려하면 되지만 jpg, png, gif 와 같은 비트맵 데이터를 CSS 로 제어할 경우에는 배수 x2, x3, x4 등을 고려해서 작성해야 합니다.
+  예를 들어 사진 같은 경우에 jpg 로 제작이 되는데 이를 CSS 로 제어할 때 고려해야 한다는 것입니다.
+  물론 사진 아닌 그 외의 제작된 그래픽이 SVG 로 제작된다면 CSS 제어 필요성도 없어지게 될 것입니다.</code></pre>               
               </div>
               <!-- //tb_three -->
               <div id="tb_four" class="tab_pane">
-                <pre class="line-numbers"><code class="language-js">플러그인이란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
-
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
+                <pre class="line-numbers"><code class="language-js">한줄효과란?
+  - 긴 문장을 줄여 한줄로 보이게 하는 효과 입니다.
+  - 게시판 게시글 내용 또는 제목에서 자주 사용되어집니다.
 
   /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+  &lt;ul class="menu"&gt;
+    &lt;li class="name_one"&gt;전체 메뉴 바로가기&lt;/li&gt;
+    &lt;li class="name_one"&gt;배너 영역 바로가기&lt;/li&gt;
+    &lt;li class="name_one"&gt;컨텐츠 영역 바로가기&lt;/li&gt;
   &lt;/div&gt;
 
   /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre>               
+  .name_one{
+    width:160px;
+    with-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }</code></pre>               
               </div>
               <!-- //tb_four -->
             </div>
@@ -719,126 +704,100 @@
             </div>
             <div class="tab-btn">
               <ul class="multi_tabs">
-                <li class="active"><a href="#tb_one">스킵</a></li>
+                <li class="active"><a href="#tb_one">크로스브라우징</a></li>
                 <li class=""><a href="#tb_two">유튜브API</a></li>
-                <li class=""><a href="#tb_three">스와이퍼js</a></li>
+                <li class=""><a href="#tb_three">슬릭js</a></li>
                 <li class=""><a href="#tb_four">중앙정렬</a></li>
               </ul>
             </div>
             <div class="tab-cont">
               <div id="tb_one" class="tab_pane active">
-                <pre class="line-numbers"><code class="language-js">스킵이란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
+                <pre class="line-numbers"><code class="language-js">크로스 브라우징이란?
+  - 웹 페이지 제작 시에 모든 브라우저에서 깨지지 않고 의도한 대로 올바르게(호환성) 나오게 하는 작업을 말한다.
+  - [HTML, CSS, Javascript 작성 시 W3C의 웹 규격에 맞는 코딩을 함으로써
+  - 어느 브라우저, 기기에서 사이트가 의도된 대로 보여지고 작동되는 기법.]
+  - 브라우저 마다 랜더링 엔진이 다르기 때문입니다.
 
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
+  *크로스 브라우징 작업
+  - 1. 도움이 되는 사이트를 이용하여 브라우저에 맞게 작업한다. - 캔아이유즈 https://caniuse.com
 
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
-  &lt;/div&gt;
+  - 2. 초기화 작업 (CSS 초기화 작업) - 브라우저마다 차이가 나는 기본 스타일 값들을 초기화 시킨다.
 
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre> 
+  - 3. 핵(Hack)
+  - 스타일을 줄 때 특수문자를 넣어서 다른브라우저들에서는 인식이 안되지만
+  - IE 특정 버전에서는 인식되도록 하는 방법이다. 이 방법은 추천하지 않는다.
+  - IE8 이상의 브라우저에서 구분해내기가 어려우며 CSS 유지 보수를 어렵게 한다.
+    div{ color:red; /* IE7이하 대응 */ *color:blue /* IE6 대응 */ _color:green }
+
+  - 4. IE용 주석을 이용한 방법 (Conditional comments)
+    HTML 문서 내에서 주석을 이용하여 구별한다.
+    [if IE 7] <link href="ie7.css" type="text/css" rel="stylesheet"/> ![endif]
+    [if IE 8] <p> 이 문구는 IE8이 포함되지 않은 하위 브라우저, 즉 IE7,6에서 보여지게 됩니다.</p> ![endif]-->
+
+    5. 메타 태그를 이용한 IE모드
+    <head> // ... <meta http-equiv="X-UA-Compatible" content="IE=edge" /> //... </head>
+    <head> 요소 안에 넣어두며 IE가 문서를 읽고 랜더링 할 때 원하는 모드로 랜더링을 하게 해준다.
+    만약 content에 값이 "IE=edge"라면 해당브라우저가 할 수 있는 가장 최신의 모드로 랜더링한다.</code></pre> 
               </div>
               <!-- //tb_one -->
               <div id="tb_two" class="tab_pane">
                 <pre class="line-numbers"><code class="language-js">유튜브API란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
-
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
-
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
-  &lt;/div&gt;
-
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre>               
+  - api란? 이미 만들어진 프로그램을 자신의 프로그램으로 불러올수 있다는점에서
+  - 라이브러리와 개념이 흡사합니다.
+  - 유튜브 API는 누구나 유튜브 동영상 자료에 접근하고 검색하도록 지원하는 REST 기반 API로,
+  - XML을 인식하는 응용 프로그램이라면 어디서나 유튜브 동영상을 프로그램에 통합할 수 있습니다.
+  - 응용 프로그램은 요청을 보낸 후 응답을 받습니다.
+  - 그런 다음, 이 응답을 분석해 동영상 자료를 응용 프로그램 인터페이스에 적절히 추가하면 되는 것입니다.
+  - 그리고 YouTube에서 제공하는 플레이어나 직접 제작한 플레이어로 시청을 하는 것입니다.</code></pre>               
               </div>
               <!-- //tb_two -->
               <div id="tb_three" class="tab_pane">
-                <pre class="line-numbers"><code class="language-js">스와이퍼js란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
+                <pre class="line-numbers"><code class="language-js">슬릭js란?
+  - 커스터마이징이 간편하여 슬라이더 라이브러리로 자주 사용되는 슬릭js 입니다.
+  - 반응형도 지원하기에, 단순한 슬라이더가 필요시 유용합니다.
 
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
-
-  /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+  /* html */
+  &lt;div id="cont_ban"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="ban"&gt;
+        &lt;div&gt;a href="#"&gt;&lt;img src="asstes/img/banner_link1.jpg" alt="웹표준지침서 보기"&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;a href="#"&gt;&lt;img src="asstes/img/banner_link1.jpg" alt="버튼 배너 보기"&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;a href="#"&gt;&lt;img src="asstes/img/banner_link1.jpg" alt="표준 배너 보기"&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 
-  /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
-          </code></pre>               
+  /* jQuery */
+  $(".ban").slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: true
+  });
+
+</code></pre>               
               </div>
               <!-- //tb_three -->
               <div id="tb_four" class="tab_pane">
-                <pre class="line-numbers"><code class="language-js">중앙정렬란?
-  -웹사이트 작업시 하나의 태그에 여러 가지의 CSS가 적용될 때가 있습니다.
-  -이 때 특정한 규칙에 따라 CSS에 우선 순위가 부여되어 적용됩니다.
-  -이 규칙을 CSS 우선 순위라고 합니다.
-
-  -기본적으로 뒤에 나오는 css가 우선순위가 높습니다. 
-  -!important > inline style attribute > id > class, 
-  -다른 attribute, 수도클래스(:first-child같은 것) > tag element,
-  -수도엘레먼트(::before같은 것) 순으로 우선순위가 높습니다.
-  -우선순위가 같다면 개수가 많은 css가 우선순위가 높습니다.
+                <pre class="line-numbers"><code class="language-js">중앙정렬이란?
+  - 중앙정렬하는 방식은 천차만별이지만, 그중에서도 보편적으로 쓰이며 안전한 방식은
+  - transform:translate 을 이용한 방법이 있습니다.
 
   /*html*/
-  &lt;div id="skip"&gt;
-    &lt;a href="#cont_nav"&gt;전체 메뉴 바로가기&lt;/a&gt;
-    &lt;a href="#cont_ban"&gt;배너 영역 바로가기&lt;/a&gt;
-    &lt;a href="#cont_cont"&gt;컨텐츠 영역 바로가기&lt;/a&gt;
+  &lt;div id="parent"&gt;
+    &lt;div class="box"&gt;중앙 박스 컨텐츠&lt;/div&gt;
   &lt;/div&gt;
 
   /*style*/
-  #skip {position: relative;}
-  #skip a {position: absolute; left: 0px; top: -65px; width: 160px;
-  border:1px solid #fff; color: #fff; text-align: center; background: #333;
-  line-height: 30px;}
-  #skip a:active,
-  #skip a:focus {top: 0;}
+  #parent {position: relative;}
+  .box {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
           </code></pre>               
               </div>
               <!-- //tb_four -->
